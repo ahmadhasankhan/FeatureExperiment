@@ -1,15 +1,21 @@
 Rails.application.routes.draw do
-  get 'invites/index'
 
-  get 'home/index'
+  resources :posts
 
-  get '/contacts/:provider/callback', :to => 'invites#index'
-  get '/contacts/failure', :to => 'invites#failure'
+  resources :messages
+
+  resources :user_sessions
+  match 'login' => "user_sessions#new",      :as => :login, via: [:get, :post]
+  match 'logout' => "user_sessions#destroy", :as => :logout, via: [:get, :post]
+  get 'tags/:tag', to: 'posts#index', as: "tag"
+
+  resources :users
+
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 
   # You can have the root of your site routed with "root"
-  root 'home#index'
+   root 'posts#index'
 
   # Example of regular route:
   #   get 'products/:id' => 'catalog#view'
