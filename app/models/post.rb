@@ -1,6 +1,6 @@
 class Post < ActiveRecord::Base
   belongs_to :user
-  has_many :taggings
+  has_many :taggings, :dependent => :destroy
   has_many :tags, through: :taggings
   #after_save :process_hashtags
 
@@ -15,6 +15,8 @@ class Post < ActiveRecord::Base
  #Getter and Setter for all_tags vertial attribute
   def all_tags=(names)
     self.tags = names.split(",").map do |name|
+        name.gsub!(/[!@%&"']/,'')
+        name.downcase!
         Tag.where(name: name.strip).first_or_create!
     end
   end

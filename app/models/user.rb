@@ -5,7 +5,7 @@ class User < ActiveRecord::Base
     #c.validate_password_field = false
   end
 
-  has_many :messages
-  has_many :posts
+  has_many :messages, :dependent => :destroy
+  has_many :posts, :dependent => :destroy
   
 end
