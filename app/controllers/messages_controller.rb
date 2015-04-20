@@ -10,6 +10,10 @@ class MessagesController < ApplicationController
     @message = Message.create(message_params)
   end
 
+  def chat
+
+  end
+
   private
 
   def message_params

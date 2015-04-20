@@ -8,6 +8,7 @@ Rails.application.routes.draw do
   match 'login' => "user_sessions#new",      :as => :login, via: [:get, :post]
   match 'logout' => "user_sessions#destroy", :as => :logout, via: [:get, :post]
   get 'tags/:tag', to: 'posts#index', as: "tag"
+  get 'chat', to: 'messages#chat', as: "chat"
 
   resources :users
 

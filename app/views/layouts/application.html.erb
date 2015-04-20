@@ -2,8 +2,9 @@
 <html>
 <head>
   <title>RealTimeApp</title>
-  <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
-  <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
+  <%= stylesheet_link_tag    'application', media: 'all' %>
+  <script src="http://localhost:5001/socket.io/socket.io.js"></script>
+  <%= javascript_include_tag 'application' %>
   <%= csrf_meta_tags %>
 </head>
 <body>
@@ -15,6 +16,7 @@
     <%= link_to "Login", new_user_session_path %>
     <%= link_to "Register", new_user_url %>
 <% end %>
+
 <%= yield %>
 
 </body>
