@@ -33,6 +33,8 @@ $(function () {
         } else {
             message += "there are " + data.numUsers + " participants";
         }
+        $('.online_badge').text(data.numUsers);
+
         log(message);
     }
 
@@ -251,14 +253,15 @@ $(function () {
     // Whenever the server emits 'user_list', add in drop down list
     socket.on('user_list', function (data) {
         alert(data.username);
-        $("select#users option[value='" + data.username + "']").remove();
-        $('select#users').append($('<option></option>').val(data.username).html(data.username));
+        $('.users_list').append($('<li id='+ data.username +'>').addClass("list-group-item").html(data.username));
+
+
     });
 
     // Whenever the server emits 'user left', log it in the chat body
     socket.on('user left', function (data) {
         log(data.username + ' left');
-        $("select#users option[value='" + data.username + "']").remove();
+        $('#' + data.username).remove();
         addParticipantsMessage(data);
         removeChatTyping(data);
     });
