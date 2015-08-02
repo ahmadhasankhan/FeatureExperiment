@@ -7,5 +7,6 @@ class User < ActiveRecord::Base
 
   has_many :messages, :dependent => :destroy
   has_many :posts, :dependent => :destroy
+  has_many :conversation, :foreign_key => :sender_id
   
 end

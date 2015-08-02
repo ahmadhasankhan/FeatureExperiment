@@ -1,22 +1,17 @@
 class MessagesController < ApplicationController
 
-  before_action :authorised_user
-
-  def index
-    @messages = Message.all
-  end
-
   def create
-    @message = Message.create(message_params)
-  end
+    @conversation = Conversation.find(params[:conversation_id])
+    @message = @conversation.messages.build(message_params)
+    @message.user_id = current_user.id
+    @message.save!
 
-  def chat
-
+    @path = conversation_path(@conversation)
   end
 
   private
 
   def message_params
-    params.require(:message).permit(:content, :user_id, :receiver_id)
+    params.require(:message).permit(:body)
   end
 end
