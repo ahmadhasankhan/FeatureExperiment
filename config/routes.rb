@@ -1,5 +1,9 @@
 Rails.application.routes.draw do
 
+  get 'blanksubmission/index'
+  get 'blanksubmission/create'
+  get 'blanksubmission/show'
+
   resources :posts
 
   resources :messages
