@@ -47,3 +47,7 @@ end
 #For Authentication
 gem 'authlogic', '~> 3.4.1'
 gem 'redis'
+
+gem 'gemoji'
+#gem 'html-pipeline'
+#gem 'github-linguist'
