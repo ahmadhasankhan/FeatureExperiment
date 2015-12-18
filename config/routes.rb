@@ -1,7 +1,7 @@
 Rails.application.routes.draw do
 
-  resources :posts
 
+  resources :posts
   resources :messages
 
   resources :user_sessions
